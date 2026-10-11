@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bglm4ihe7q3ts"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lfxu0"]
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[node name="Control" type="Control" unique_id=1865702648]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=861037875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=181905989]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=1505430917]
+size = Vector2i(576, 648)
+
+[node name="Node3D" type="Node3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1630032118]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=578407369]
+mesh = SubResource("SphereMesh_lfxu0")
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=1839660415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=1099484083]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=932222822]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer" unique_id=115578049]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=1069774407]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=936071892]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=1627717355]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=858344275]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=558657322]
+layout_mode = 2
