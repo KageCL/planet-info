@@ -1,12 +1,26 @@
 [gd_scene format=3 uid="uid://bglm4ihe7q3ts"]
 
+[ext_resource type="Script" uid="uid://bug60nofyfwcv" path="res://mesh_instance_3d.gd" id="1_upklh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gd4og"]
+albedo_color = Color(0.54509807, 0.4509804, 0.33333334, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_lfxu0"]
-radius = 1.0
-height = 2.0
+radius = 2.0
+height = 4.0
 radial_segments = 8
 rings = 4
 
-[node name="Control" type="Control" unique_id=1865702648]
+[sub_resource type="LabelSettings" id="LabelSettings_lfxu0"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjb8m"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6c0r"]
+font_size = 25
+
+[node name="PlanetInfo" type="Control" unique_id=1865702648]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=861037875]
+[node name="LayoutContainer" type="HBoxContainer" parent="." unique_id=861037875]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,43 +37,100 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=181905989]
+[node name="PlanetView" type="SubViewportContainer" parent="LayoutContainer" unique_id=181905989]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=1505430917]
+[node name="SubViewport" type="SubViewport" parent="LayoutContainer/PlanetView" unique_id=1505430917]
 size = Vector2i(576, 648)
 
-[node name="Node3D" type="Node3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1630032118]
+[node name="Planet" type="Node3D" parent="LayoutContainer/PlanetView/SubViewport" unique_id=1630032118]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=578407369]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LayoutContainer/PlanetView/SubViewport/Planet" unique_id=578407369]
+material_override = SubResource("StandardMaterial3D_gd4og")
 mesh = SubResource("SphereMesh_lfxu0")
+script = ExtResource("1_upklh")
 
-[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=1839660415]
+[node name="Camera3D" type="Camera3D" parent="LayoutContainer/PlanetView/SubViewport/Planet" unique_id=1839660415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport/Node3D" unique_id=1099484083]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+[node name="Sunlight" type="DirectionalLight3D" parent="LayoutContainer/PlanetView/SubViewport/Planet" unique_id=1099484083]
+transform = Transform3D(1, 1.7484555e-07, 0, 1.7484555e-07, -1, 8.742278e-08, 1.5285484e-14, -8.742278e-08, -1, 0, 0, 3.5)
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=932222822]
+[node name="Info" type="PanelContainer" parent="LayoutContainer" unique_id=932222822]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer" unique_id=115578049]
+[node name="VBoxContainer" type="VBoxContainer" parent="LayoutContainer/Info" unique_id=115578049]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=1069774407]
+[node name="PlanetName" type="Label" parent="LayoutContainer/Info/VBoxContainer" unique_id=1069774407]
+layout_mode = 2
+text = "Farinoth"
+label_settings = SubResource("LabelSettings_lfxu0")
+
+[node name="generalInfo" type="VBoxContainer" parent="LayoutContainer/Info/VBoxContainer" unique_id=796154076]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=936071892]
+[node name="Terrain" type="Label" parent="LayoutContainer/Info/VBoxContainer/generalInfo" unique_id=1886186820]
+layout_mode = 2
+text = " Terrain: Rocky"
+
+[node name="Gravity" type="Label" parent="LayoutContainer/Info/VBoxContainer/generalInfo" unique_id=2113489051]
+layout_mode = 2
+text = " Gravity: 50 G"
+
+[node name="Temperature" type="Label" parent="LayoutContainer/Info/VBoxContainer/generalInfo" unique_id=660172707]
+layout_mode = 2
+text = " Temperature: 90 F / 32 C"
+
+[node name="Status" type="Label" parent="LayoutContainer/Info/VBoxContainer/generalInfo" unique_id=1209613363]
+layout_mode = 2
+text = " Status: Unexplored"
+
+[node name="HSeparator2" type="HSeparator" parent="LayoutContainer/Info/VBoxContainer" unique_id=401005536]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=1627717355]
+[node name="mineralsTitle" type="Label" parent="LayoutContainer/Info/VBoxContainer" unique_id=1749976802]
+layout_mode = 2
+text = " Minerals"
+label_settings = SubResource("LabelSettings_hjb8m")
+
+[node name="mineralsInfo" type="VBoxContainer" parent="LayoutContainer/Info/VBoxContainer" unique_id=789915871]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=858344275]
+[node name="Metals" type="Label" parent="LayoutContainer/Info/VBoxContainer/mineralsInfo" unique_id=1971909589]
+layout_mode = 2
+text = " Metals: Iron, Nickel, Gold"
+
+[node name="Crystals" type="Label" parent="LayoutContainer/Info/VBoxContainer/mineralsInfo" unique_id=1640514410]
+layout_mode = 2
+text = " Crystals: Quarts, Halite, Beryl"
+
+[node name="Fuels" type="Label" parent="LayoutContainer/Info/VBoxContainer/mineralsInfo" unique_id=1987196990]
+layout_mode = 2
+text = " Fuels: Gasoline, Hydrogen, Xenon"
+
+[node name="HSeparator" type="HSeparator" parent="LayoutContainer/Info/VBoxContainer" unique_id=1359411958]
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=558657322]
+[node name="plantsTitle" type="Label" parent="LayoutContainer/Info/VBoxContainer" unique_id=1637429188]
 layout_mode = 2
+text = " Flora & Fauna"
+label_settings = SubResource("LabelSettings_r6c0r")
+
+[node name="plantsDetails" type="VBoxContainer" parent="LayoutContainer/Info/VBoxContainer" unique_id=382242382]
+layout_mode = 2
+
+[node name="plants" type="Label" parent="LayoutContainer/Info/VBoxContainer/plantsDetails" unique_id=94253174]
+layout_mode = 2
+text = " Flora: Mossvine, Pillobloom, Quillavorn"
+
+[node name="wildife" type="Label" parent="LayoutContainer/Info/VBoxContainer/plantsDetails" unique_id=1188254297]
+layout_mode = 2
+text = " Wildlife: Quilla, Florfinn, Massowine"
+
+[node name="enemies" type="Label" parent="LayoutContainer/Info/VBoxContainer/plantsDetails" unique_id=1367089175]
+layout_mode = 2
+text = " Dangerous Wildlife: Ghex, Gorrak"
