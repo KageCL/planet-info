@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bglm4ihe7q3ts"]
 
+[ext_resource type="Script" uid="uid://fru8xuudauta" path="res://planet_info.gd" id="1_gd4og"]
 [ext_resource type="Script" uid="uid://bug60nofyfwcv" path="res://mesh_instance_3d.gd" id="1_upklh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gd4og"]
@@ -27,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gd4og")
 
 [node name="LayoutContainer" type="HBoxContainer" parent="." unique_id=861037875]
 layout_mode = 1
@@ -134,3 +136,14 @@ text = " Wildlife: Quilla, Florfinn, Massowine"
 [node name="enemies" type="Label" parent="LayoutContainer/Info/VBoxContainer/plantsDetails" unique_id=1367089175]
 layout_mode = 2
 text = " Dangerous Wildlife: Ghex, Gorrak"
+
+[node name="PlanetNavigation" type="HBoxContainer" parent="LayoutContainer/Info/VBoxContainer" unique_id=1556660212]
+layout_mode = 2
+
+[node name="PreviousButton" type="Button" parent="LayoutContainer/Info/VBoxContainer/PlanetNavigation" unique_id=890763338]
+layout_mode = 2
+text = "◀ Previous"
+
+[node name="NextButton" type="Button" parent="LayoutContainer/Info/VBoxContainer/PlanetNavigation" unique_id=1777214695]
+layout_mode = 2
+text = "Next ▶"
